@@ -2,6 +2,15 @@
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody))]
+
+/**
+ * ShipController.cs - A Unity3D player controller inspired by Elite: Dangerous.
+ * 
+ * This is a physics based controller and as such, requires a RigidBody component.
+ * NOTE: Impulse mode is experimental and unfinished.
+ * 
+ * Author: Jeff Pizano
+ **/
 public class ShipController : MonoBehaviour
 {
     Rigidbody ship;
