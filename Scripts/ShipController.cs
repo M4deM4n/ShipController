@@ -9,21 +9,18 @@ public class ShipController : MonoBehaviour
     float qtrScreenH;
     float qtrScreenW;
 
-    #region PHYSICS FLAGS
     bool adjustPitch = false;
     bool adjustYaw = false;
     bool adjustRoll = false;
     bool adjustThrustX = false;
     bool adjustThrustY = false;
     bool adjustThrustZ = false;
-    #endregion
 
     [ReadOnlyAttribute]
     public Vector3 mousePosition;
     public float mouseDeadZone = 0.1f;
     Vector3 centerScreen;
 
-    #region FLIGHT PARAMETERS
     float pitch = 0.0f;
     float yaw = 0.0f;
     float roll = 0.0f;
@@ -32,10 +29,8 @@ public class ShipController : MonoBehaviour
     float yawDiff = 0.0f;
 
     Vector3 thrust = Vector3.zero;
-    #endregion
     
-    
-    //[ReadOnlyAttribute]
+    // THROTTLE
     public float throttle = 100f;
     [Range(0,50)]
     public float throttleAmount = 0.25f;
@@ -44,6 +39,7 @@ public class ShipController : MonoBehaviour
     [Range(-500,100f)]
     public float minThrottle = -2f;
 
+    // FLIGHT CONTROL PARAMETERS
     [Range(0, 100f)]
     public float pitchStrength = 1.5f;
     [Range(0, 100f)]
@@ -51,8 +47,9 @@ public class ShipController : MonoBehaviour
     [Range(0, 10f)]
     public float rollStrength = 1.5f;
 
-    public bool dampenersEnabled = false;
+    public bool flightAssist = false;
 
+    // IMPULSE MODE
     float impulseTimer;
     public bool impulseMode = false;
     public float impulseCoolDown = 3.0f;
@@ -81,7 +78,7 @@ public class ShipController : MonoBehaviour
         UpdateTimers();
         InputUpdate();
 
-        if (dampenersEnabled)
+        if (flightAssist)
         {
             DampenTransform();
         }
@@ -149,7 +146,7 @@ public class ShipController : MonoBehaviour
         // Toggle Inertial dampeners
         if (Input.GetKeyUp(KeyCode.CapsLock))
         {
-            dampenersEnabled = !dampenersEnabled;
+            flightAssist = !flightAssist;
         }
 
         throttle = Mathf.Clamp(throttle, minThrottle, maxThrottle);
