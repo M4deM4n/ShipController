@@ -25,7 +25,7 @@ public class ShipController : MonoBehaviour
     bool adjustThrustY = false;
     bool adjustThrustZ = false;
 
-    [ReadOnlyAttribute]
+    [ReadOnly]
     public Vector3 mousePosition;
     public float mouseDeadZone = 0.1f;
     Vector3 centerScreen;
@@ -37,7 +37,7 @@ public class ShipController : MonoBehaviour
     float pitchDiff = 0.0f;
     float yawDiff = 0.0f;
 
-    Vector3 thrust = Vector3.zero;
+    public Vector3 thrust = Vector3.zero;
     
     // THROTTLE
     public float throttle = 100f;
@@ -94,6 +94,9 @@ public class ShipController : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// 
+    /// </summary>
     void UpdateTimers()
     {
         impulseTimer += Time.deltaTime;
